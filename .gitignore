@@ -1,0 +1,76 @@
+int i=0; //inicia el contador i
+int j=0; //inicia el contador j para poder prender dos leds al mismo tiempo
+int leds[14]={0,1,2,3,4,5,6,7,8,9,10,11,12,13}; //vector de 14 posiciones 
+
+void setup() {// Declaramos los 14 pines digitales del arduino uno
+  pinMode (0,OUTPUT);
+  pinMode (1,OUTPUT);
+  pinMode (2,OUTPUT);
+  pinMode (3,OUTPUT);
+  pinMode (4,OUTPUT);
+  pinMode (5,OUTPUT);
+  pinMode (6,OUTPUT);
+  pinMode (7,OUTPUT);
+  pinMode (8,OUTPUT);
+  pinMode (9,OUTPUT);
+  pinMode (10,OUTPUT);
+  pinMode (11,OUTPUT);
+  pinMode (12,OUTPUT);
+  pinMode (13,OUTPUT);
+}
+void juego1(){
+  for(i=0;i<14;i++){//los leds se encenderan de forma ascendente.
+  digitalWrite(leds[i],HIGH);
+  delay(100);  
+  }
+  for(i=13;i>=0;i--){//los leds de apagaran en forma descendente.
+  digitalWrite(leds[i],LOW); 
+  delay(100);  
+  }
+  }
+  
+void juego2(){
+   for(i=0,j=13;i<7;i++,j--){//Los leds se encenderan al mismo tiempo desde los extemos
+  digitalWrite(leds[i],HIGH),digitalWrite(leds[j],HIGH);
+  delay(200);}
+  for(i=7,j=7;i>=0;i--,j++){//Se apagaran los leds al contrario del encendido.
+  digitalWrite(leds[i],LOW),digitalWrite(leds[j],LOW);
+  delay(200);}
+  } 
+  
+void juego3(){
+  for(i=0,j=13;i>=0,j<=13;i--,j++){//se enciende un led de cada extremo
+  digitalWrite(leds[i],HIGH),digitalWrite(leds[j],HIGH);
+  delay(500);  
+  }
+   for(i=6,j=7;i>=5,j<=8;i--,j++){//se enciende los 4 leds del centro 
+  digitalWrite(leds[i],HIGH),digitalWrite(leds[j],HIGH);
+  delay(500);  
+  }
+   for(i=4,j=9;i>=1,j<=12;i--,j++){//se enciende los 8 leds restantes 
+  digitalWrite(leds[i],HIGH),digitalWrite(leds[j],HIGH);
+  delay(500);  
+  }
+  for(i=0,j=13;i>=0,j<=13;i--,j++){//se apagan un led de cada extremo
+  digitalWrite(leds[i],LOW),digitalWrite(leds[j],LOW);
+  delay(500);  
+  }
+  for(i=6,j=7;i>=5,j<=8;i--,j++){//se apagan los 4 leds del centro 
+  digitalWrite(leds[i],LOW),digitalWrite(leds[j],LOW);
+  delay(500);  
+  }
+  for(i=4,j=9;i>=1,j<=12;i--,j++){//se eapagan los 8 leds del centro 
+  digitalWrite(leds[i],LOW),digitalWrite(leds[j],LOW);
+  delay(500);  
+  
+  }
+  }
+  
+void loop() {
+  juego1(); //Llama al codigo del juego1
+  delay(250); //Hace una ausa entre el juego1 y el juego2
+  juego2(); //Llama al codigo del juego2
+  delay(250); //Hace una pausa entre el juego2 y el juego3
+  juego3(); //Llama al codigo del juego3
+  delay(250);//Hace una pausa entre el juego3 y el juego1
+}
